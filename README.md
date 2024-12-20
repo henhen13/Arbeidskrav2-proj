@@ -1,7 +1,4 @@
-# Arbeidskrav2-proj
-Et Terraform-prosjekt som etablerer en infrastruktur med følgende elementer:  En virtuell maskin (VM) som kjører en webtjeneste. To virtuelle maskiner (VM-er) for databaser, satt opp bak en lastbalanserer for å sikre lastfordeling og redundans.
-
-# erWebDB: Terraform Project for Web Server Connected to a Database in Azure  
+# Terraform Project for Web Server Connected to a Database in Azure  
 
 This Terraform project provisions:  
 - A virtual machine (VM) hosting a web service.  
@@ -18,13 +15,13 @@ This Terraform project provisions:
 ## Setup Instructions  
 
 ### Prerequisites  
-- Terraform installed.  
+- Terraform installed. Can be done with Chocolately  
 - Azure account with appropriate permissions.  
 - Azure CLI installed and authenticated via `az login`.  
 
 ### Download and Configure  
 1. **Download**  
-   Download the project as a `.zip` file and extract it.  
+   Download the project as a `.zip` file and extract it. Then open the extracted directory in powershell and initilize terraform with "terraform init"
 
 2. **Modify Variables**  
    Update `variables.tfvars` with your environment details.  
@@ -39,3 +36,14 @@ This Terraform project provisions:
    Use the following command in PowerShell:  
    ```bash
    az login
+If there are login issues, follow the instructions provided in PowerShell to resolve them.
+
+2. **Provision Infrastructure**
+   ```bash
+  cd <path-to-Terraform-folder>
+  terraform init
+  terraform plan -out main.tfplan
+  terraform apply main.tfplan
+Note: If you encounter a MariaDB setup error, delete Azure resources and re-run the Terraform commands.
+
+
