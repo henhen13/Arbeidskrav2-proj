@@ -40,10 +40,32 @@ If there are login issues, follow the instructions provided in PowerShell to res
 
 2. **Provision Infrastructure**
    ```bash
-  cd <path-to-Terraform-folder>
-  terraform init
-  terraform plan -out main.tfplan
-  terraform apply main.tfplan
+   cd <path-to-Terraform-folder>
+   terraform init
+   terraform plan -out main.tfplan
+   terraform apply main.tfplan
 Note: If you encounter a MariaDB setup error, delete Azure resources and re-run the Terraform commands.
+
+## Usage Instructions  
+
+### Access the Web Service  
+- Open a browser and enter the public IP address listed in the `web_vm_public_ip` output after running Terraform.  
+- Note: It may take a few minutes for the webserver to be up and for it to fetch info from the database, approx 5 minutes.
+
+### Retrieve Admin Password  
+To view the admin password, run:
+   terraform output admin_password
+
+### Retrieve Admin Password  
+From the web server, SSH into any of the database VMs using their IPs:
+    ```bash
+ssh <admin_username>@<database-VM-IP>
+Password: <admin_password>
+
+### Destroy Resources
+To remove all created resources after testing or use, run:
+    ```bash
+terraform plan -destroy -out main.destroy.tfplan
+terraform apply main.destroy.tfplan
 
 
