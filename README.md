@@ -48,24 +48,26 @@ Note: If you encounter a MariaDB setup error, delete Azure resources and re-run 
 
 ## Usage Instructions  
 
-### Access the Web Service  
+1. **Access the Web Service**  
 - Open a browser and enter the public IP address listed in the `web_vm_public_ip` output after running Terraform.  
 - Note: It may take a few minutes for the webserver to be up and for it to fetch info from the database, approx 5 minutes.
 
-### Retrieve Admin Password  
+2. **Retrieve Admin Password**  
 To view the admin password, run:
+   ```bash
    terraform output admin_password
 
-### Retrieve Admin Password  
-From the web server, SSH into any of the database VMs using their IPs:
-    ```bash
-ssh <admin_username>@<database-VM-IP>
-Password: <admin_password>
+4. **Connect to the Web Server via SSH**
+To connect to the web server, use the following command:  
 
-### Destroy Resources
-To remove all created resources after testing or use, run:
     ```bash
-terraform plan -destroy -out main.destroy.tfplan
-terraform apply main.destroy.tfplan
+    ssh <admin_username>@<public-IP>
+    Password: <admin_password>
+
+5. **Destroy Resources**
+To delete all resources after use, run:
+    ```bash
+    terraform plan -destroy -out main.destroy.tfplan
+    terraform apply main.destroy.tfplan
 
 
